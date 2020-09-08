@@ -160,12 +160,12 @@ public class Assignment4<Data> implements Iterable<Data> {    //Queue, Generic d
 	{
         Iterator<Data> queue = this.iterator();
         int index = 0;
-        System.out.println("Content of queue:");
+        System.out.println("\nContent of queue:");
 
 		while(index < counter)                          //While iterator pointer has not reached end of queue
 		{
             Data data = queue.next();                   //Get data of current node in queue and then move pointer to next
-			if(counter == 1)                            //If data to be printed is at the end then print without ","
+			if(index >= counter-1)                            //If data to be printed is at the end then print without ","
 			{
 				System.out.println("[" + data + "] ");
 			}

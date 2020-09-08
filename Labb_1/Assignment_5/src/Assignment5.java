@@ -144,6 +144,7 @@ public class Assignment5<Data> {    //Queue, Generic datatype
 
     public void printqueue()
     {
+        int index = 0;
         Node<Data> peekdata = top;                          //Labels top as "peekdata"
         System.out.println("\nContent of queue:");
         if(!isEmpty())
@@ -152,7 +153,7 @@ public class Assignment5<Data> {    //Queue, Generic datatype
             {
                 peekdata = peekdata.next;
 
-                if(counter == 1)
+                if(index >= counter-1)
                 {
                     System.out.print("[" + peekdata.data + "] ");
                 }
@@ -161,7 +162,7 @@ public class Assignment5<Data> {    //Queue, Generic datatype
                     System.out.print("[" + peekdata.data + "], ");
 
                 }
-                
+                index++;
             }
         }
         else

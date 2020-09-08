@@ -136,7 +136,7 @@ public class Assignment3<Data> implements Iterable<Data>    // Queue, Generic da
         while (index < counter)                             // While iterator pointer has not reached end of queue
         {
             Data data = queue.next();                       // Get data of current node in queue and then move pointer to next
-            if (counter == 1)                               // If data to be printed is at the end then print without ","
+            if (index >= counter-1)                               // If data to be printed is at the end then print without ","
             {
                 System.out.println("[" + data + "] ");
             } 
