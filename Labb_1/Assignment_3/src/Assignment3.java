@@ -92,64 +92,59 @@ public class Assignment3<Data> implements Iterable<Data>    // Queue, Generic da
 
         System.out.println("\nStarted Test:");
         testqueue.enqueue("First");
-        testqueue.printqueue();
+        System.out.println(testqueue);
         testqueue.enqueue("Second");
-        testqueue.printqueue();
+        System.out.println(testqueue);
         testqueue.enqueue("Third");
-        testqueue.printqueue();
+        System.out.println(testqueue);
         testqueue.enqueue("4th");
-        testqueue.printqueue();
+        System.out.println(testqueue);
         testqueue.enqueue("5");
-        testqueue.printqueue();
+        System.out.println(testqueue);
 
         testqueue.dequeue();
-        testqueue.printqueue();
+        System.out.println(testqueue);
         testqueue.dequeue();
-        testqueue.printqueue();
+        System.out.println(testqueue);
         testqueue.dequeue();
-        testqueue.printqueue();
+        System.out.println(testqueue);
         testqueue.dequeue();
-        testqueue.printqueue();
+        System.out.println(testqueue);
         testqueue.dequeue();
-        testqueue.printqueue();
+        System.out.println(testqueue);
 
         testqueue.dequeue();                                //Two extra to check incase trying to dequeue an empty list
-        testqueue.printqueue();
+        System.out.println(testqueue);
         testqueue.dequeue();
-        testqueue.printqueue();
+        System.out.println(testqueue);
 
         testqueue.enqueue("Working still");                 //Testing if program still can queue and no pointer error show up
-        testqueue.printqueue();
+        System.out.println(testqueue);
         testqueue.enqueue("Keeping it going!");
-        testqueue.printqueue();
+        System.out.println(testqueue);
         System.out.println("\n Test Finished");
 
         
     }
-
-    public void printqueue()                                // Uses iterator to print queue
+    
+    public String toString() 
     {
-        Iterator<Data> queue = this.iterator();
-        int index = 0;
-        System.out.println("\nContent of queue:");
-
-        while (index < counter)                             // While iterator pointer has not reached end of queue
+        int pointer = 1;
+        StringBuilder s = new StringBuilder();
+        for (Data data : this)
         {
-            Data data = queue.next();                       // Get data of current node in queue and then move pointer to next
-            if (index >= counter-1)                               // If data to be printed is at the end then print without ","
+            if(pointer == counter)                    //If data to be printed is at the end then print without ","
             {
-                System.out.println("[" + data + "] ");
-            } 
-            else                                            // Else print with ","
-            {
-                System.out.print("[" + data + "], ");
+                s.append("[" + data + "]\n");
             }
-            index++;
+            else                                        //Else print with ","
+            {
+                s.append("[" + data + "], ");
+            }
+            pointer++;
         }
-        if (isEmpty()) 
-        {
-            System.out.println("Queue is empty!");
-        }
+        
+        return s.toString();
     }
 
     public Iterator<Data> iterator()                        // Set up Iterator and use iterateQueue class
@@ -207,20 +202,20 @@ public class Assignment3<Data> implements Iterable<Data>    // Queue, Generic da
                 {
                     System.out.println("What would you like to add?");
                     queue.enqueue(data.next());
-                    queue.printqueue();
+                    System.out.println(queue);
                     break;
                 }
 
                 case 2: 
                 {
                     queue.dequeue();
-                    queue.printqueue();
+                    System.out.println(queue);
                     break;
                 }
 
                 case 3: 
                 {
-                    queue.printqueue();
+                    System.out.println(queue);
                     break;
                 }
 

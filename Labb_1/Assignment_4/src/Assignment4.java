@@ -122,30 +122,30 @@ public class Assignment4<Data> implements Iterable<Data> {    //Queue, Generic d
 
         System.out.println("\nStarted Test:");
         testqueue.enqueue("1st", 1);
-        testqueue.printqueue();
+        System.out.println(testqueue);
         testqueue.enqueue("second", 2);
-        testqueue.printqueue();
+        System.out.println(testqueue);
         testqueue.enqueue("third", 2);
-        testqueue.printqueue();
+        System.out.println(testqueue);
         testqueue.enqueue("first", 1);
-        testqueue.printqueue();
+        System.out.println(testqueue);
 
         testqueue.dequeue(1);
-        testqueue.printqueue();
+        System.out.println(testqueue);
         testqueue.dequeue(1);
-        testqueue.printqueue();
+        System.out.println(testqueue);
         testqueue.dequeue(1);
-        testqueue.printqueue();
+        System.out.println(testqueue);
         testqueue.dequeue(1);
-        testqueue.printqueue();
+        System.out.println(testqueue);
         testqueue.dequeue(1);   //Testing one extra
-        testqueue.printqueue();
+        System.out.println(testqueue);
 
 
         testqueue.enqueue("Still can queue", 1);
-        testqueue.printqueue();
+        System.out.println(testqueue);
         testqueue.enqueue("Nothing is broken", 2);
-        testqueue.printqueue();
+        System.out.println(testqueue);
         testqueue.enqueue("No errors!", 1);
 
         testqueue.dequeue(2);
@@ -156,30 +156,25 @@ public class Assignment4<Data> implements Iterable<Data> {    //Queue, Generic d
 
     }
 
-    public void printqueue()                            //Uses iterator to print queue
-	{
-        Iterator<Data> queue = this.iterator();
-        int index = 0;
-        System.out.println("\nContent of queue:");
-
-		while(index < counter)                          //While iterator pointer has not reached end of queue
-		{
-            Data data = queue.next();                   //Get data of current node in queue and then move pointer to next
-			if(index >= counter-1)                            //If data to be printed is at the end then print without ","
-			{
-				System.out.println("[" + data + "] ");
-			}
-			else                                        //Else print with ","
-			{
-				System.out.print("[" + data + "], ");
-			}
-			index++;
-        }
-        if(isEmpty())
+    public String toString() 
+    {
+        int pointer = 1;
+        StringBuilder s = new StringBuilder();
+        for (Data data : this)
         {
-            System.out.println("Queue is empty!");
+            if(pointer == counter)                    //If data to be printed is at the end then print without ","
+            {
+                s.append("[" + data + "]\n");
+            }
+            else                                        //Else print with ","
+            {
+                s.append("[" + data + "], ");
+            }
+            pointer++;
         }
-	}
+        
+        return s.toString();
+    }
 
     public Iterator<Data> iterator()                        //Set up Iterator and use iterateQueue class
 	{
@@ -189,10 +184,10 @@ public class Assignment4<Data> implements Iterable<Data> {    //Queue, Generic d
     private class iterateQueue implements Iterator<Data>    //Define interateQueue class that implements Iterator
 	{
 		private Node<Data> current = top;                   //Create local variable "current" and point to first of queue
-
+        private int index = 0;
         public boolean hasNext()                            //If queue has a next data value, return true else false
         {
-			return current.next != null;
+			return index < counter;
 		}
 
         public Data next() 
@@ -205,6 +200,7 @@ public class Assignment4<Data> implements Iterable<Data> {    //Queue, Generic d
             {
                 Data data = current.data;
                 current = current.next;
+                index++;
                 return data;
             }	
 		}
@@ -241,7 +237,7 @@ public class Assignment4<Data> implements Iterable<Data> {    //Queue, Generic d
                 
                     System.out.println("What data would you like to add?");
                     queue.enqueue(data.next(), location);
-                    queue.printqueue();
+                    System.out.println(queue);
                     break;
                     
                 }
@@ -251,13 +247,13 @@ public class Assignment4<Data> implements Iterable<Data> {    //Queue, Generic d
                     System.out.println("Where would you like to remove from the queue?\n 1: Front\n 2: Back");
                     location = data.nextInt();
                     queue.dequeue(location);
-                    queue.printqueue();
+                    System.out.println(queue);
                     break;
                 }
 
                 case 3:
                 {
-                    queue.printqueue();
+                    System.out.println(queue);
                     break;
                 }
 
