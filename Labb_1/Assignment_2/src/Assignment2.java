@@ -61,22 +61,6 @@ public class Assignment2<Data> {                //Generic data type
         return top.data;                        //Returns data from top of stack
     }
 
-    public static void test() 
-    {
-        Assignment2<String> stack = new Assignment2<String>();   //Creates stack with datatype String
-
-        stack.push("f");
-        stack.push("i");
-        stack.push("r");
-        stack.push("s");
-        stack.push("t");
-
-        stack.push("1");
-        stack.push("23");
-        
-    }
-
-
     public static void main(final String[] args) 
     {
         Scanner in = new Scanner(System.in);
