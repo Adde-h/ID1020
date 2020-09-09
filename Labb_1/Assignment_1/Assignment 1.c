@@ -45,13 +45,13 @@ void iterative()
 
 static void test()
 {
-    
+    char testarray[] = {'t', 'e', 's', 't', 'i', 'n', 'g'};
 }
 
 int main()
 {
     printf("Insert your characters: ");
-   // recursive(); 
-    iterative();
+    recursive(); 
+    //iterative();
     return 0;
 }

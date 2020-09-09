@@ -220,7 +220,8 @@ public class Assignment5<Data> {    //Queue, Generic datatype
                     break;
                 }
 
-                case 4: {
+                case 4: 
+                {
                     Assignment5.test();
                     break;
                 }
