@@ -46,7 +46,7 @@ public class Assignment6 {    //Queue, Generic datatype
         back.previous = newData;    //Reroutes back previous to newData instead of check
     }
 
-    public void inputqueue()
+    public void inputqueue() //Handles user input values
     {
         Scanner incommingData = new Scanner(System.in);
         int data = 0;
@@ -56,13 +56,13 @@ public class Assignment6 {    //Queue, Generic datatype
         {
             data = incommingData.nextInt(); 
         } 
-        catch (InputMismatchException e) 
+        catch (InputMismatchException e)       //Catches error if user enters other values then integers
         {
             System.out.println("\nError! Only insert integers!");
             return;
         }
 
-        enqueue(data);
+        enqueue(data);                        //Runs enqueue metod
     }
 
     public void enqueue(int data)             //Method to adding to queue
