@@ -156,7 +156,7 @@ public class Assignment4<Data> implements Iterable<Data> {    //Queue, Generic d
 
     }
 
-    public String toString() 
+    public String toString()                          //Redefines toString Method
     {
         int pointer = 1;
         StringBuilder s = new StringBuilder();
@@ -166,7 +166,7 @@ public class Assignment4<Data> implements Iterable<Data> {    //Queue, Generic d
             {
                 s.append("[" + data + "]\n");
             }
-            else                                        //Else print with ","
+            else                                      //Else print with ","
             {
                 s.append("[" + data + "], ");
             }
@@ -176,7 +176,7 @@ public class Assignment4<Data> implements Iterable<Data> {    //Queue, Generic d
         return s.toString();
     }
 
-    public Iterator<Data> iterator()                        //Set up Iterator and use iterateQueue class
+    public Iterator<Data> iterator()                  //Set up Iterator and use iterateQueue class
 	{
 		return new iterateQueue();
 	}

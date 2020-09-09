@@ -24,12 +24,13 @@ void recursive()
 
 void iterative()
 {
-    char str[30], temp;
+    int max = 10;
+    char str[max], temp;
     int i, j, count;
     i = j = count = 0;
 
     //Counts how many characters is submitted by user
-        while (((str[i] = getchar()) != '\n'))
+        while (((str[i] = getchar()) != '\n' && i < max ))
         {
             count++;
             i++;
@@ -51,7 +52,7 @@ static void test()
 int main()
 {
     printf("Insert your characters: ");
-    recursive(); 
-    //iterative();
+    //recursive(); 
+    iterative();
     return 0;
 }

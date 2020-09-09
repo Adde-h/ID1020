@@ -39,13 +39,13 @@ public class Assignment5<Data> {    //Queue, Generic datatype
     public void enqueue(Data data)              //Method to adding to queue
     {
         Node<Data> last = bottom.previous;      //Labels bottom previous as "last"
-        Node<Data> newData = new Node<Data>();  //Creatas a new node
+        Node<Data> newData = new Node<Data>();  //Creates a new node
         newData.data = data;                    //Saves data to new node
         newData.next = bottom;                  //Points new node to bottom (end of the queue)
         newData.previous = last;                //Points the new node "previous" to the now second to last of queue
         last.next = newData;                    //Points second to last "next" to the new data (last data)
         bottom.previous = newData;              //Points the bottom "previous" to the new data (last data)
-        counter++;                         //Increment counter
+        counter++;                              //Increment counter
     }
 
     public void dequeue(int location)

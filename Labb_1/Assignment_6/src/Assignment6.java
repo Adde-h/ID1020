@@ -67,7 +67,6 @@ public class Assignment6 {    //Queue, Generic datatype
 
     public void enqueue(int data)             //Method to adding to queue
     {
-        
         Node newData = new Node();            //Creatas a new node
         newData.data = data;                  //Saves data to new node
        
@@ -84,8 +83,8 @@ public class Assignment6 {    //Queue, Generic datatype
             }
             
             behindCheck(check, newData);
-
         }
+        
         System.out.println("\n" + data + " has been added to the queue");
         counter++;                             
     }
