@@ -84,7 +84,7 @@ public class Assignment6 {    //Queue, Generic datatype
             
             behindCheck(check, newData);
         }
-        
+
         System.out.println("\n" + data + " has been added to the queue");
         counter++;                             
     }
@@ -140,7 +140,7 @@ public class Assignment6 {    //Queue, Generic datatype
                 peekdata = peekdata.next;
                 if(index >= counter-1)
                 {
-                    System.out.print("[" + peekdata.data + "] \n\n");
+                    System.out.println("[" + peekdata.data + "] \n");
                 }
                 else
                 {
