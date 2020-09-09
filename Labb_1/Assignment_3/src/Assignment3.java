@@ -97,10 +97,6 @@ public class Assignment3<Data> implements Iterable<Data>    // Queue, Generic da
         System.out.println(testqueue);
         testqueue.enqueue("Third");
         System.out.println(testqueue);
-        testqueue.enqueue("4th");
-        System.out.println(testqueue);
-        testqueue.enqueue("5");
-        System.out.println(testqueue);
 
         testqueue.dequeue();
         System.out.println(testqueue);
@@ -108,10 +104,7 @@ public class Assignment3<Data> implements Iterable<Data>    // Queue, Generic da
         System.out.println(testqueue);
         testqueue.dequeue();
         System.out.println(testqueue);
-        testqueue.dequeue();
-        System.out.println(testqueue);
-        testqueue.dequeue();
-        System.out.println(testqueue);
+
 
         testqueue.dequeue();                                //Two extra to check incase trying to dequeue an empty list
         System.out.println(testqueue);

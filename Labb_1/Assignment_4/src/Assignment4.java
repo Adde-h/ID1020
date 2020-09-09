@@ -34,7 +34,6 @@ public class Assignment4<Data> implements Iterable<Data> {    //Queue, Generic d
 
     public void enqueue(Data data, int location)    //Method to adding to queue
     {
-
         if(top == null)                         //If list is empty
         {
             top = new Node<Data>();             //Create new node called referenced with top
@@ -67,6 +66,7 @@ public class Assignment4<Data> implements Iterable<Data> {    //Queue, Generic d
             }
             
         }
+        System.out.println("\n[" + data + "] has been added to the queue");
         counter++;                                      //Increment counter
     }
 
@@ -160,6 +160,7 @@ public class Assignment4<Data> implements Iterable<Data> {    //Queue, Generic d
     {
         int pointer = 1;
         StringBuilder s = new StringBuilder();
+        System.out.println("\nContent of queue:");
         for (Data data : this)
         {
             if(pointer == counter)                    //If data to be printed is at the end then print without ","
