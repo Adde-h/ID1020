@@ -53,6 +53,7 @@ int main()
 {
     printf("Insert your characters: ");
     //recursive(); 
+    //test();
     iterative();
     return 0;
 }
