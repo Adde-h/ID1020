@@ -11,32 +11,30 @@ public class Assignment3
         System.out.println();
     } 
 
-    public static int inversionCount(int arraySize, int data[])
+    public static void inversionCount(int arraySize, int data[]) 
     {
         int invCount = 0;
-        for(int i = 1; i < arraySize; i++)
+        for(int i = 0; i < arraySize; i++)
         {
-            for (int j = i; j > 0; j--)
+            for (int j = i; j < arraySize-1; j++)
             {
-                if(data[j] < data [j-1])
+                if(data[i] > data [j+1])
                 {
+                    System.out.println("[Index: " + i + ", Value: " + data[i] + "], " + "[Index: " + (j+1) + ", Value: " + data[j+1] + "]\n ");
                     invCount++;
-                }
-                else
-                {
-                    break;
                 }
             }
         }
 
-        return invCount;
+        System.out.println("Amount of inversions: " + invCount);
     }
 
     public static void insertionsort(int arraySize, int data[])
     {
-        int inversion = inversionCount(arraySize, data);
         int temp = 0;
         int swapCounter = 0;
+        System.out.println("The content of the array: ");
+        printArray(arraySize, data);
         for(int i = 1; i < arraySize; i++)
         {
             for (int j = i; j > 0; j--)
@@ -55,7 +53,8 @@ public class Assignment3
                 printArray(arraySize, data);
             }
         }
-                System.out.println("Amount of swaps: " + swapCounter);
+
+        System.out.println("Amount of swaps: " + swapCounter);
     }
 
     public static void main(String[] args) 
@@ -72,7 +71,9 @@ public class Assignment3
             data[i] = indata.nextInt();
         }
         
+        inversionCount(arraySize, data);
         insertionsort(arraySize, data);
+
 
         indata.close();
     }
