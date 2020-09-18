@@ -1,3 +1,5 @@
+
+
 /*
 Adeel Hussain
 Generated: 2020-09-17, Updated: 2020-09-18
@@ -10,6 +12,9 @@ import java.util.Random;
 
 public class Assignment5 
 {
+
+    long startTime;             //Global starttime
+
     public static int randomFill() //Creates random numbers
     {
         Random random = new Random();
@@ -107,6 +112,19 @@ public class Assignment5
 
     public static void main(String[] args) 
     {
+        int arraySize = 1000000;
+        int[] array =  arrayCreator(arraySize); //Creates array before calculating time complexity of each array
         
+        long startTime = System.nanoTime();
+        insertionsort(arraySize,array);
+        long elapsedTime = System.nanoTime() - startTime;
+
+        System.out.println("Insertionsort took " + elapsedTime/1000000 + " milliseconds to process " + arraySize + " integers\n");
+
+        startTime = System.nanoTime();
+        mergesort(array);
+        elapsedTime = System.nanoTime() - startTime;
+        
+        System.out.println("Mergesort took " + elapsedTime/1000000 + " milliseconds to process " + arraySize + " integers\n");
     }
 }
