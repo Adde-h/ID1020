@@ -1,0 +1,134 @@
+import java.util.Random;
+
+public class Assignment5 
+{
+
+    public static int randomFill()
+    {
+        Random random = new Random();
+        int randomNumber = random.nextInt();
+        return randomNumber;
+    }
+
+    public static int[] arrayCreator(int arraySize)
+    {
+        int[] array = new int[arraySize];
+
+        for(int i = 0; i < arraySize; i++)
+        {
+            array[i] = randomFill();
+        }
+
+        return array;
+    }
+
+    public static void mergesort(int[] array) //Creates a copy to temp array which is used to be halved and sorted
+    {
+        int[] tempArray = new tempArray[array.length];  //Creates array of same length
+        mergesort(array, tempArray, 0, array.length-1); //Parameters for mergesort start, (Original Array, copy of array, start of array, end of array)
+        assert isSorted(a);                             //For debugging, checkes if array is sorted
+    }
+
+    // is v < w ?
+    private static boolean less(int v, int w) 
+    {
+        if(v < w)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    
+    /*private static boolean isSorted(int[] a) 
+    {
+        return isSorted(a, 0, a.length - 1);
+    }*/
+
+    private static boolean isSorted(int[] a, int lo, int hi) 
+    {
+        for (int i = lo + 1; i <= hi; i++)
+            if (less(a[i], a[i-1])) return false;
+        return true;
+    }
+
+
+    public static void mergesort(int[] array, int[] tempArray, int leftStart, int rightEnd)
+    {
+        if(leftStart >= rightEnd)                           //Basecase if whole array has been divided
+        {
+            return;
+        }
+
+        int middle = leftStart + (rightEnd - leftStart) / 2;    //Find middle of array
+
+        mergesort(array, tempArray, leftStart, middle);         //Divide into subarrays, (left), recursive method
+        mergesort(array, tempArray, middle + 1, rightEnd);      //Divide into subarrays, (right), recursive method
+        merge(array, tempArray, leftStart, middle, rightEnd);   //Start merging subarrays and sorting them
+    }
+
+    public static void merge(int[] array, int[] tempArray, int leftStart, int middle, int rightEnd)
+    {
+        assert isSorted(array,leftStart,middle);
+        assert isSorted(array, middle+1, rightEnd);
+
+        for(int i = leftStart; i <= rightEnd; i++) //Copy to tempArray
+        {
+            tempArray[i] = array[i];
+        }
+
+        int leftEnd = (rightEnd + leftStart) / 2;
+        int rightStart = leftEnd + 1;
+       // int size = rightEnd - leftStart + 1;
+
+        int left = leftStart;
+        int right = rightStart;
+        int index = leftStart;
+
+        while(left <= leftEnd && right <= rightEnd) //While the arrays has not been iterated fully
+        {
+            if(array[left] <= array[right])
+            {
+                tempArray[index] = array[left];
+                index++;
+                left++;
+            }
+            else
+            {
+                tempArray[index] = array[right];
+                right++;
+            }
+            index++;
+        }
+    }
+
+    public static void insertionsort(int arraySize, int data[])
+    {
+        int temp = 0;
+        for(int i = 1; i < arraySize; i++)
+        {
+            for (int j = i; j > 0; j--)
+            {
+                if(data[j] < data [j-1])
+                {
+                    temp = data[j-1];
+                    data[j-1] = data[j];
+                    data[j] = temp;
+                }
+                else
+                {
+                    break;
+                }
+            }
+        }
+    }
+
+
+
+    public static void main(String[] args) 
+    {
+        
+    }
+}

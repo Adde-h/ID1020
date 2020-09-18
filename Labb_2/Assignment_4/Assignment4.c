@@ -37,7 +37,7 @@ void printArray(int arraySize, int data[])
 
 int main()
 {
-    int array[] = {1,2,-4,-8,7,0,-3,-12,2};
+    int array[] = {7,2,-4,-8,7,0,-3,-12,2};
     int size = sizeof(array) / sizeof(array[0]);
 
     insertionOrder(size,array);
