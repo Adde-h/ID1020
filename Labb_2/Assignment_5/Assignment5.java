@@ -12,9 +12,6 @@ import java.util.Random;
 
 public class Assignment5 
 {
-
-    long startTime;             //Global starttime
-
     public static int randomFill() //Creates random numbers
     {
         Random random = new Random();
@@ -29,6 +26,19 @@ public class Assignment5
         for(int i = 0; i < arraySize; i++)
         {
             array[i] = randomFill();
+        }
+
+        return array;
+    }
+
+    public static int[] worstCase(int arraySize)
+    {
+        int[] array = new int[arraySize];
+        int j = 0;
+        for(int i = 0; i < arraySize-1; i++)
+        {
+            array[i] = arraySize - j;
+            j++;
         }
 
         return array;
@@ -112,9 +122,10 @@ public class Assignment5
 
     public static void main(String[] args) 
     {
-        int arraySize = 1000000;
+        int arraySize = 1000;
         int[] array =  arrayCreator(arraySize); //Creates array before calculating time complexity of each array
-        
+        int[] arrayWorstCase = worstCase(arraySize);
+
         long startTime = System.nanoTime();
         insertionsort(arraySize,array);
         long elapsedTime = System.nanoTime() - startTime;
@@ -126,5 +137,19 @@ public class Assignment5
         elapsedTime = System.nanoTime() - startTime;
         
         System.out.println("Mergesort took " + elapsedTime/1000000 + " milliseconds to process " + arraySize + " integers\n");
+        
+        startTime = System.nanoTime();
+        insertionsort(arraySize,arrayWorstCase);
+        elapsedTime = System.nanoTime() - startTime;
+
+        System.out.println("Insertionsort took " + elapsedTime/1000000 + " milliseconds to process " + arraySize + " integers in Worst Case Scenario\n");
+
+        startTime = System.nanoTime();
+        mergesort(arrayWorstCase);
+        elapsedTime = System.nanoTime() - startTime;
+        
+        System.out.println("Mergesort took " + elapsedTime/1000000 + " milliseconds to process " + arraySize + " integers in Worst Case Scenario\n");
+        
+
     }
 }
