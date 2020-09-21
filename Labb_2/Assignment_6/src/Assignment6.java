@@ -21,7 +21,7 @@ public class Assignment6
         try {
             FileWriter myWriter = new FileWriter("Algorithm output " + arraySize + " size.txt");
             myWriter.write("Cutoff Value, Arraysize " + arraySize + " (ms) \n");
-            for(int i = 1; i<= 3; i++)
+            for(int i = 1; i<= 30; i++)
             {
                 int cutoff = i;
                 int[] array =  arrayCreator(arraySize);
@@ -143,7 +143,7 @@ public class Assignment6
         long elapsedTime;
         int arraySize = 1000000;
         
-        int cutoff = 1;
+        int cutoff = 5;
         int[] array =  arrayCreator(arraySize); //Creates array before calculating time complexity of each array
 
         startTime = System.nanoTime();

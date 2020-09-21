@@ -46,7 +46,7 @@ public class Assignment3
             {
                 if(data[i] > data [j+1])
                 {
-                    System.out.println("[Index: " + i + ", Value: " + data[i] + "], " + "[Index: " + (j+1) + ", Value: " + data[j+1] + "]\n ");
+                    System.out.println("[Index: " + i + ", Value: " + data[i] + "], " + "[Index: " + (j+1) + ", Value: " + data[j+1] + "] ");
                     invCount++;
                 }
             }
