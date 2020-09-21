@@ -3,7 +3,7 @@ Adeel Hussain
 Generated: 2020-09-20, Updated: 2020-09-21
 A program used to calculate time complexity using mergesort and insertionsort with different cutoffs, output in milliseconds
 Can also be used to print results to txt file
-Input: Integers
+Input: Size of Array, cutoff value
 Reference: https://algs4.cs.princeton.edu/14analysis/Mergesort.java.html, Intro text v3 ID1020 Algorithms and Data structures.pdf
 */
 import java.io.FileWriter;
@@ -13,7 +13,7 @@ import java.util.Random;
 public class Assignment6 
 {
 
-    public static void outputToText(int arraySize) //write output to text file, can also be imported to Excel
+    public static void outputToText(int arraySize, int cutoff) //write output to text file, can also be imported to Excel
     {
         long startTime;
         long elapsedTime;
@@ -21,9 +21,8 @@ public class Assignment6
         try {
             FileWriter myWriter = new FileWriter("Algorithm output " + arraySize + " size.txt");
             myWriter.write("Cutoff Value, Arraysize " + arraySize + " (ms) \n");
-            for(int i = 1; i<= 30; i++)
+            for(int i = 1; i <= cutoff; i++)
             {
-                int cutoff = i;
                 int[] array =  arrayCreator(arraySize);
                 startTime = System.nanoTime();
                 mergesort(array, cutoff);
@@ -152,6 +151,6 @@ public class Assignment6
         
         System.out.println("Mergesort took " + elapsedTime/1000000 + " milliseconds to process " + arraySize + " integers with cutoff " + cutoff + "\n");
         
-        outputToText(arraySize);
+        outputToText(arraySize,cutoff);
     }
 }
