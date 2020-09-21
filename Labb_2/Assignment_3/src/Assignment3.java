@@ -33,7 +33,7 @@ public class Assignment3
     {
         int temp = 0;
         int swapCounter = 0;
-        System.out.println("The content of the array: ");
+        System.out.println("\nThe content of the array: ");
         printArray(arraySize, data);
         for(int i = 1; i < arraySize; i++)
         {
@@ -70,6 +70,11 @@ public class Assignment3
         {
             data[i] = indata.nextInt();
         }
+
+        System.out.println("Array to be sorted: ");
+        printArray(arraySize, data);
+
+        System.out.println("\nSorting algorithm started: ");
         
         inversionCount(arraySize, data);
         insertionsort(arraySize, data);

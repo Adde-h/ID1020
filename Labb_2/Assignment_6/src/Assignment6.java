@@ -1,19 +1,19 @@
 /*
 Adeel Hussain
-Generated: 2020-09-17, Updated: 2020-09-21
-A program used to calculate time complexity using mergesort and insertionsort with different arraylengths
+Generated: 2020-09-20, Updated: 2020-09-21
+A program used to calculate time complexity using mergesort and insertionsort with different cutoffs
 Input: Integers
 Reference: https://algs4.cs.princeton.edu/14analysis/Mergesort.java.html
 */
-
 import java.util.Random;
 
-public class Assignment5 
+public class Assignment6 
 {
-    public static int randomFill(int maximum) //Creates random numbers
+    
+    public static int randomFill() //Creates random numbers
     {
         Random random = new Random();
-        int randomNumber = random.nextInt(maximum);
+        int randomNumber = random.nextInt();
         return randomNumber;
     }
 
@@ -23,20 +23,7 @@ public class Assignment5
 
         for(int i = 0; i < arraySize; i++)
         {
-            array[i] = randomFill(arraySize);
-        }
-
-        return array;
-    }
-
-    public static int[] worstCase(int arraySize)
-    {
-        int[] array = new int[arraySize];
-        int j = 0;
-        for(int i = 0; i < arraySize-1; i++)
-        {
-            array[i] = arraySize - j;
-            j++;
+            array[i] = randomFill();
         }
 
         return array;
@@ -93,14 +80,16 @@ public class Assignment5
         return sortedArray;
     }
 
-    public static int[] mergesort(int[] input)
+    public static int[] mergesort(int[] input, int cutoff)
     {
         int arrLength = input.length;
         int middle = (arrLength / 2);
-        if(arrLength <= 1) //Basecase if array is 1 or subarray is already fully devided
+        if(arrLength <= cutoff) //Basecase if array is equal to cutoff
         {
+            insertionsort(arrLength, input);
             return input;
         }
+        
         // Creates two subarrays, left and right that splits input array
         int[] leftArray = new int[arrLength / 2];
         int[] rightArray = new int[arrLength - middle];
@@ -114,41 +103,25 @@ public class Assignment5
         {
             rightArray[i] = input[i + middle];
         }
-        return merge(mergesort(leftArray), mergesort(rightArray)); //recursive function, recalls the function
+        return merge(mergesort(leftArray, cutoff), mergesort(rightArray, cutoff)); //recursive function, recalls the function
     }   
 
 
     public static void main(String[] args) 
     {
-        int arraySize = 200000;
+        int arraySize = 1000000;
+        int cutoff = 1;
         int[] array =  arrayCreator(arraySize); //Creates array before calculating time complexity of each array
-        int[] arrayWorstCase = worstCase(arraySize);
         long startTime;
         long elapsedTime;
 
         startTime = System.nanoTime();
-        mergesort(arrayWorstCase);
+        mergesort(array, cutoff);
         elapsedTime = System.nanoTime() - startTime;
         
-        System.out.println("Mergesort took " + elapsedTime/1000000 + " milliseconds to process " + arraySize + " integers in Worst Case Scenario\n");
+      System.out.println("Mergesort took " + elapsedTime/1000000 + " milliseconds to process " + arraySize + " integers with cutoff " + cutoff + "\n");
         
-        startTime = System.nanoTime();
-        mergesort(array);
-        elapsedTime = System.nanoTime() - startTime;
+
         
-        System.out.println("Mergesort took " + elapsedTime/1000000 + " milliseconds to process " + arraySize + " integers\n");
-       
-        startTime = System.nanoTime();
-        insertionsort(arraySize,arrayWorstCase);
-        elapsedTime = System.nanoTime() - startTime;
-
-        System.out.println("Insertionsort took " + elapsedTime/1000000 + " milliseconds to process " + arraySize + " integers in Worst Case Scenario\n");
-
-        startTime = System.nanoTime();
-        insertionsort(arraySize,array);
-        elapsedTime = System.nanoTime() - startTime;
-
-        System.out.println("Insertionsort took " + elapsedTime/1000000 + " milliseconds to process " + arraySize + " integers\n");
-
     }
 }

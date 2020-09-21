@@ -42,12 +42,17 @@ public class Assignment1
         int arraySize = indata.nextInt();
         System.out.println("Enter the " + arraySize + " numbers to be sorted");
         int[] data = new int[arraySize];
-        
+
         for(int i = 0; i <= arraySize-1; i++)
         {
             data[i] = indata.nextInt();
         }
-        
+                
+        System.out.println("Array to be sorted: ");
+        printArray(arraySize, data);
+
+        System.out.println("\nSorting algorithm started: ");
+
         insertionsort(arraySize,data);
 
         indata.close();

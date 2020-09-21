@@ -49,6 +49,11 @@ public class Assignment2
         {
             data[i] = indata.nextInt();
         }
+
+        System.out.println("Array to be sorted: ");
+        printArray(arraySize, data);
+
+        System.out.println("\nSorting algorithm started: ");
         
         insertionsort(arraySize,data);
 
