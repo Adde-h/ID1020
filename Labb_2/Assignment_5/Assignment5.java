@@ -1,9 +1,9 @@
 /*
 Adeel Hussain
 Generated: 2020-09-17, Updated: 2020-09-21
-A program used to calculate time complexity using mergesort and insertionsort with different arraylengths
-Input: Integers
-Reference: https://algs4.cs.princeton.edu/14analysis/Mergesort.java.html
+A program used to calculate time complexity using mergesort and insertionsort with different arraylengths, output in milliseconds
+Input: Size of array
+Reference: https://algs4.cs.princeton.edu/14analysis/Mergesort.java.html, Intro text v3 ID1020 Algorithms and Data structures.pdf
 */
 
 import java.util.Random;
@@ -120,7 +120,7 @@ public class Assignment5
 
     public static void main(String[] args) 
     {
-        int arraySize = 200000;
+        int arraySize = 20000;
         int[] array =  arrayCreator(arraySize); //Creates array before calculating time complexity of each array
         int[] arrayWorstCase = worstCase(arraySize);
         long startTime;

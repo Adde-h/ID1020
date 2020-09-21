@@ -1,3 +1,11 @@
+/*
+Adeel Hussain
+Generated: 2020-09-16, Updated: 2020-09-16
+A program that sorts an array using insertionsort and shows number of swaps performed, [5], [4], [3], [2], [1] -> [1], [2], [3], [4], [5] Swaps: 10
+Input: Integers
+Reference: Intro text v3 ID1020 Algorithms and Data structures.pdf
+*/
+
 import java.util.Scanner;
 
 public class Assignment2 
@@ -10,7 +18,8 @@ public class Assignment2
         }  
         System.out.println();
     } 
-
+    
+    //Insertion sort, i iterates and increments along the array, j is used to compare left of i pointer with j-1
     public static void insertionsort(int arraySize, int data[])
     {
         int temp = 0;

@@ -1,3 +1,29 @@
+/*
+Adeel Hussain
+Generated: 2020-09-16, Updated: 2020-09-16
+A program that sorts an array using insertionsort and shows number of swaps performed aswell as inversions to be performed before sorting, 
+[5], [4], [3], [2], [1]
+
+[Index: 0, Value: 5], [Index: 1, Value: 4]
+[Index: 0, Value: 5], [Index: 2, Value: 3]
+[Index: 0, Value: 5], [Index: 3, Value: 2]
+[Index: 0, Value: 5], [Index: 4, Value: 1]
+[Index: 1, Value: 4], [Index: 2, Value: 3]
+[Index: 1, Value: 4], [Index: 3, Value: 2]
+[Index: 1, Value: 4], [Index: 4, Value: 1]
+[Index: 2, Value: 3], [Index: 3, Value: 2]
+[Index: 2, Value: 3], [Index: 4, Value: 1]
+[Index: 3, Value: 2], [Index: 4, Value: 1]
+Amount of inversions: 10
+
+Sorted array:
+[1], [2], [3], [4], [5]
+Swaps: 10
+
+Input: Integers
+Reference: Intro text v3 ID1020 Algorithms and Data structures.pdf
+*/
+
 import java.util.Scanner;
 
 public class Assignment3 
@@ -28,7 +54,8 @@ public class Assignment3
 
         System.out.println("Amount of inversions: " + invCount);
     }
-
+    
+    //Insertion sort, i iterates and increments along the array, j is used to compare left of i pointer with j-1
     public static void insertionsort(int arraySize, int data[])
     {
         int temp = 0;
