@@ -121,7 +121,7 @@ public class Assignment5
     public static void main(String[] args) 
     {
         int arraySize = 40000;
-        int[] array =  arrayCreator(arraySize); //Creates array before calculating time complexity of each array
+        int[] array =  arrayCreator(arraySize); //Creates array before calculating execution time of each method
         int[] arrayWorstCase = worstCase(arraySize);
         long startTime;
         long elapsedTime;

@@ -12,6 +12,15 @@ import java.util.Random;
 
 public class Assignment6 
 {
+    /* Used for troubleshooting */
+    static void printArray(int arraySize, int data[]) 
+    {  
+        for (int i = 0; i < arraySize; i++)
+        {
+            System.out.print("[" + data[i] + "], "); 
+        }  
+        System.out.println();
+    } 
 
     public static void outputToText(int arraySize, int cutoff) //write output to text file, can also be imported to Excel
     {
@@ -25,9 +34,9 @@ public class Assignment6
             {
                 int[] array =  arrayCreator(arraySize);
                 startTime = System.nanoTime();
-                mergesort(array, cutoff);
+                mergesort(array, i);
                 elapsedTime = System.nanoTime() - startTime;
-                myWriter.write(cutoff + "," + elapsedTime/1000000 + "\n");
+                myWriter.write(i + "," + elapsedTime/1000000 + "\n");
             }
             myWriter.close();
             System.out.println("Successfully wrote to the file.");
@@ -58,7 +67,7 @@ public class Assignment6
         return array;
     }
 
-    public static void insertionsort(int arraySize, int data[])
+    public static int[] insertionsort(int arraySize, int data[])
     {
         int temp = 0;
         for(int i = 1; i < arraySize; i++)
@@ -77,6 +86,7 @@ public class Assignment6
                 }
             }
         }
+        return data;
     }
 
     private static int[] merge(int[] leftArray, int[] rightArray)
@@ -115,7 +125,7 @@ public class Assignment6
         int middle = (arrLength / 2);
         if(arrLength <= cutoff) //Basecase if array is equal to cutoff
         {
-            insertionsort(arrLength, input);
+            input = insertionsort(arrLength, input);
             return input;
         }
         
@@ -132,7 +142,7 @@ public class Assignment6
         {
             rightArray[i] = input[i + middle];
         }
-        return merge(mergesort(leftArray, cutoff), mergesort(rightArray, cutoff)); //recursive function, recalls the function
+        return merge(mergesort(leftArray, cutoff), mergesort(rightArray, cutoff)); //Recursive function, recalls the function
     }   
 
 
@@ -140,17 +150,18 @@ public class Assignment6
     {
         long startTime;
         long elapsedTime;
-        int arraySize = 1000000;
-        
-        int cutoff = 5;
-        int[] array =  arrayCreator(arraySize); //Creates array before calculating time complexity of each array
 
-        startTime = System.nanoTime();
-        mergesort(array, cutoff);
-        elapsedTime = System.nanoTime() - startTime;
+        int arraySize = 1000000;
+        int cutoff = 5;                                 //Cutoff value, size of array when mergesort stops dividing and insertionsort is used
+        
+        int[] array =  arrayCreator(arraySize);         //Creates array before calculating time complexity of each array
+
+        startTime = System.nanoTime();                  //Takes current computer time
+        array = mergesort(array, cutoff);
+        elapsedTime = System.nanoTime() - startTime;    //Takes current computer time and computes the difference of previous computertime to get time complexity of algorithm
         
         System.out.println("Mergesort took " + elapsedTime/1000000 + " milliseconds to process " + arraySize + " integers with cutoff " + cutoff + "\n");
-        
+
         outputToText(arraySize,cutoff);
     }
 }
