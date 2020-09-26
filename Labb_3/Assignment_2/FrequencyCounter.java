@@ -1,4 +1,3 @@
-
 /*
 Adeel Hussain
 Generated: 2020-09-26, Updated: 2020-09-27
@@ -9,18 +8,14 @@ Reference: https://algs4.cs.princeton.edu/31elementary/FrequencyCounter.java.htm
 */
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.Scanner;
 
 public class FrequencyCounter 
 {
-    
     public static void main(String[] args) throws FileNotFoundException
     {
-        
         int words = 0;
-        int maxWords = 10000;
+        int maxWords = 125000;
         int minlength = 1;
         long starttime, endtime, time;    
 
@@ -111,24 +106,6 @@ public class FrequencyCounter
         System.out.println("BinarySearchST operation took: " + time + " milliseconds to execute");
         System.out.println("The most frequent word was \"" + max2 + "\" that occured " + binarySearchST.get(max2) + " times");
         
-
-        try {
-            FileWriter myWriter = new FileWriter("Algorithm output.txt");
-            myWriter.write("Words | BinarySearchST Time (ms) | Binary Search Tree Time (ms) \n");
-            for(int i = 10; i <= arraySize; i = i*10)
-            {
-               
-                myWriter.write(i + "," + merge + "," + quicksort + "\n");
-            }
-            
-            myWriter.close();
-            System.out.println("Successfully wrote to the file.");
-        } 
-        catch (IOException e) 
-        {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
         
         ScanBST.close();
         ScanBinarySearchST.close();
