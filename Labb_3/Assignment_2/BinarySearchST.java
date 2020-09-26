@@ -1,3 +1,5 @@
+import java.util.NoSuchElementException;
+
 /*
 Adeel Hussain
 Generated: 2020-09-24, Updated: 2020-09-26
@@ -142,6 +144,58 @@ public class BinarySearchST<Key extends Comparable<Key>, Value>
         vals[i] = val;
         n++;                                        //Incrementing ammount of keys in ST
     }
+
+    public Key min() 
+    {
+        if (isEmpty()) 
+        {
+            throw new NoSuchElementException("called min() with empty symbol table");
+        }
+        return keys[0]; 
+    }
+
+    public Key max() 
+    {
+        {
+            if (isEmpty()) throw new NoSuchElementException("called max() with empty symbol table");
+        }
+
+        return keys[n-1];
+    }
+
+    public Iterable<Key> keys() 
+    {
+        return keys(min(), max());
+    }
+
+    public Iterable<Key> keys(Key lo, Key hi) 
+    {
+        if (lo == null) 
+        {
+            throw new IllegalArgumentException("first argument to keys() is null"); 
+        }
+        if (hi == null) 
+        {
+            throw new IllegalArgumentException("second argument to keys() is null"); 
+        }
+
+        Queue<Key> queue = new Queue<Key>();
+
+        if (lo.compareTo(hi) > 0) 
+        {
+            return queue;
+        }
+        for (int i = rank(lo); i < rank(hi); i++) 
+        {
+            queue.enqueue(keys[i]);
+        }
+        if (contains(hi)) 
+        {
+            queue.enqueue(keys[rank(hi)]);
+        }
+        return queue; 
+    }
+
 
     public static void main(String[] args) 
     {

@@ -128,38 +128,6 @@ public class BST<Key extends Comparable <Key>, Value>
         return x;
     }
 
-    public Key select(int rank)
-    {
-        if(rank < 0 || rank >= size())
-        {
-            throw new IllegalArgumentException("argument to select() is invalid:" + rank);
-        }
-        return select(root, rank);
-    }
-
-    private Key select(Node x, int rank)
-    {
-        if(x == null)
-        {
-            return null;
-        }
-
-        int leftSize = size(x.left);
-        
-        if(leftSize > rank)
-        {
-            return select(x.left, rank);
-        }
-        else if(leftSize < rank)
-        {
-            return select(x.right, rank - leftSize - 1);
-        }
-        else
-        {
-            return x.key;
-        }
-    }
-
     public int rank(Key key)
     {
         if(key == null)
@@ -286,13 +254,4 @@ public class BST<Key extends Comparable <Key>, Value>
             keys(x.right, queue, lo, hi);
         }
     }
-
-    public static void main(String[] args) {
-        BST<String, Integer> st = new BST<String, Integer>();
-
-        st.put("test", 1);
-
-        System.out.println(st.get("est"));
-    }
-
 }
