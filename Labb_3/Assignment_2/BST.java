@@ -1,3 +1,5 @@
+import java.util.NoSuchElementException;
+
 /*
 Adeel Hussain
 Generated: 2020-09-25, Updated: 2020-09-26
@@ -58,14 +60,7 @@ public class BST<Key extends Comparable <Key>, Value>
 
     public Value get(Key key)
     {
-        Value search = get(root,key);   //Search for key, start at root
-        
-        if(search == null)              //If key does not exist
-        {
-            System.out.println("Key does not exist!");
-        }
-
-        return search;       
+        return get(root, key);  //Search for key, start at root   
     }
 
     private Value get(Node x, Key key)
@@ -133,15 +128,6 @@ public class BST<Key extends Comparable <Key>, Value>
         return x;
     }
 
-    public static void main(String[] args) {
-        BST<String, Integer> st = new BST<String, Integer>();
-
-        st.put("test", 1);
-
-        System.out.println(st.get("est"));
-    }
-
-/*                                          NOT NECESSARY IN OUR CASE
     public Key select(int rank)
     {
         if(rank < 0 || rank >= size())
@@ -232,5 +218,72 @@ public class BST<Key extends Comparable <Key>, Value>
             keys(x.right, queue, lo, hi);
         }
     }
-*/
+
+    public Key min()
+    {
+        if(isEmpty())
+        {
+            throw new NoSuchElementException("calls min() with empty symbol table");
+        }
+        return min(root).key;
+    }
+
+    private Node min(Node x)
+    {
+        if(x.left == null)
+        {
+            return x;
+        }
+        else
+        {
+            return min(x.left);
+        }
+    }
+
+    public Key max()
+    {
+        if(isEmpty())
+        {
+            throw new NoSuchElementException("calls max() with empty symbol table");
+        }
+        return max(root).key;
+    }
+
+    private Node max(Node x)
+    {
+        if(x.right == null)
+        {
+            return x;
+        }
+        else
+        {
+            return max(x.right);
+        }
+    }
+
+    public Iterable<Key> keys()
+    {
+        if(isEmpty())
+        {
+            return new Queue<key>
+        }
+        return keys(min(), max());
+    }
+
+    public Iterable<Key> keys(Key lo, Key hi)
+    {
+        if(lo == null)
+        {
+            throw new IllegalArgumentException("first argument to keys() is null");
+        }
+    }
+
+    public static void main(String[] args) {
+        BST<String, Integer> st = new BST<String, Integer>();
+
+        st.put("test", 1);
+
+        System.out.println(st.get("est"));
+    }
+
 }

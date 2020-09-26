@@ -9,7 +9,7 @@ import java.util.Scanner;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class Assignment3<Data> implements Iterable<Data>    // Queue, Generic datatype
+public class Queue<Data> implements Iterable<Data>    // Queue, Generic datatype
 {   
 
     private Node<Data> top;                                 // Creates top of queue
@@ -22,7 +22,7 @@ public class Assignment3<Data> implements Iterable<Data>    // Queue, Generic da
         private Node<Data> previous;
     }
 
-    public Assignment3()                                    // Constructor
+    public Queue()                                    // Constructor
     {
         top = null;
         counter = 0;
@@ -87,7 +87,7 @@ public class Assignment3<Data> implements Iterable<Data>    // Queue, Generic da
 
     static void test() 
     {
-        Assignment3<String> testqueue = new Assignment3<String>();
+        Queue<String> testqueue = new Queue<String>();
 
         System.out.println("\nStarted Test:");
         testqueue.enqueue("First");
@@ -174,7 +174,7 @@ public class Assignment3<Data> implements Iterable<Data>    // Queue, Generic da
         Scanner in = new Scanner(System.in);
         Scanner data = new Scanner(System.in);
 
-        Assignment3<String> queue = new Assignment3<String>();
+        Queue<String> queue = new Queue<String>();
 
         while (on == true) {
             System.out.println("\n-----------------------------------------------");
@@ -213,7 +213,7 @@ public class Assignment3<Data> implements Iterable<Data>    // Queue, Generic da
 
                 case 4: 
                 {
-                    Assignment3.test();
+                    Queue.test();
                     break;
                 }
 

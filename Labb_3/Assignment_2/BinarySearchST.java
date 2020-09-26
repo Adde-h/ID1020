@@ -119,13 +119,6 @@ public class BinarySearchST<Key extends Comparable<Key>, Value>
             throw new IllegalArgumentException("First argument to put() is null");
         }
 
-       /* if(val == null)                             //If key is inserted without value, remove the key (NOT NECESSARY?)
-        {
-            delete(key);
-            return;
-        }
-        */
-
         int i = rank(key);                          //Find key in ST, Else return pos for key to be inserted
 
         if(i < n && keys[i].compareTo(key) == 0)    //If key already in ST
