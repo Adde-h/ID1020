@@ -1,237 +1,147 @@
-/*
-Adeel Hussain
-Generated: 2020-09-03, Updated: 2020-09-07
-Creates a queue that is double linked circular
-Input: Abstract Data Type
-Reference: https://algs4.cs.princeton.edu/13stacks/DoublyLinkedList.java.html
-*/
-import java.util.Scanner;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class Queue<Data> implements Iterable<Data>    // Queue, Generic datatype
-{   
+/**
+ *  The {@code Queue} class represents a first-in-first-out (FIFO)
+ *  queue of generic items.
+ *  It supports the usual <em>enqueue</em> and <em>dequeue</em>
+ *  operations, along with methods for peeking at the first item,
+ *  testing if the queue is empty, and iterating through
+ *  the items in FIFO order.
+ *  <p>
+ *  This implementation uses a singly linked list with a static nested class for
+ *  linked-list nodes. See {@link LinkedQueue} for the version from the
+ *  textbook that uses a non-static nested class.
+ *  See {@link ResizingArrayQueue} for a version that uses a resizing array.
+ *  The <em>enqueue</em>, <em>dequeue</em>, <em>peek</em>, <em>size</em>, and <em>is-empty</em>
+ *  operations all take constant time in the worst case.
+ *  <p>
+ *  For additional documentation, see <a href="https://algs4.cs.princeton.edu/13stacks">Section 1.3</a> of
+ *  <i>Algorithms, 4th Edition</i> by Robert Sedgewick and Kevin Wayne.
+ *
+ *  @author Robert Sedgewick
+ *  @author Kevin Wayne
+ *
+ *  @param <Item> the generic type of an item in this queue
+ */
+    public class Queue<Item> implements Iterable<Item> {
+    private Node<Item> first;    // beginning of queue
+    private Node<Item> last;     // end of queue
+    private int n;               // number of elements on queue
 
-    private Node<Data> top;                                 // Creates top of queue
-    private int counter;                                    // Counter
-
-    private static class Node<Data>                         // Datatypes for queue
-    {
-        private Data data;
-        private Node<Data> next;
-        private Node<Data> previous;
+    // helper linked list class
+    private static class Node<Item> {
+        private Item item;
+        private Node<Item> next;
     }
 
-    public Queue()                                    // Constructor
-    {
-        top = null;
-        counter = 0;
+    /**
+     * Initializes an empty queue.
+     */
+    public Queue() {
+        first = null;
+        last  = null;
+        n = 0;
     }
 
-    public boolean isEmpty()                                // If counter equals 0 then return true, else false
-    {
-        return counter == 0;
+    /**
+     * Returns true if this queue is empty.
+     *
+     * @return {@code true} if this queue is empty; {@code false} otherwise
+     */
+    public boolean isEmpty() {
+        return first == null;
     }
 
-    public void enqueue(Data data)                          // Method to adding to queue
-    {
-        if (top == null)                                    // If list is empty
-        {
-            top = new Node<Data>();                         // Create new node called referenced with top
-            top.data = data;                                // load the data to top
-            top.next = top;                                 // Circular list
-            top.previous = top;                             // Circular list
-        } 
-        else 
-        {
-            Node<Data> last = top.previous;                 // Labels bottom previous as "last"
-            Node<Data> newData = new Node<Data>();          // Creatas a new node
-            newData.data = data;                            // Saves data to new node
-
-            last.next = newData;                            // Points last next path to the new node
-            newData.previous = last;                        // Points new node previous path to last (second last now)
-            top.previous = newData;                         // Points top previous path to new node (creating circular list)
-            newData.next = top;                             // Points new node next path to top (Creating circular list)
-        }
-        counter++;                                          // Increment counter
+    /**
+     * Returns the number of items in this queue.
+     *
+     * @return the number of items in this queue
+     */
+    public int size() {
+        return n;
     }
 
-    public void dequeue() {
-        if (!isEmpty())                                     // If queue is not empty then run, else print "queue is empty!"
-        {
-            Data data = top.data;                           // Loads data from first in queue
-
-            if (counter <= 1) {                             // If data being removed is last
-                top.next = null;                            // Removes top next path
-                top.previous = null;                        // Removes top previous path
-                top = null;                                 // Sets top to null
-            } 
-            else 
-            {
-                Node<Data> second = top.next;               // Labels data second in queue as "second"
-                Node<Data> last = top.previous;             // Labels data in last position as "last"
-                second.previous = last;                     // Reroutes second (now first in queue) to point previous to last
-                last.next = second;                         // Reroutes last in queue next path to point to second (now first in queue)
-                top = second;                               // Move top reference to second (now first in queue)
-            }
-
-            counter--;
-
-            System.out.println("The data dequeued from the list is: " + data);
-        } 
-        else 
-        {
-            System.out.println("No Element left to dequeue!\n");
-        }
+    /**
+     * Returns the item least recently added to this queue.
+     *
+     * @return the item least recently added to this queue
+     * @throws NoSuchElementException if this queue is empty
+     */
+    public Item peek() {
+        if (isEmpty()) throw new NoSuchElementException("Queue underflow");
+        return first.item;
     }
 
-    static void test() 
-    {
-        Queue<String> testqueue = new Queue<String>();
-
-        System.out.println("\nStarted Test:");
-        testqueue.enqueue("First");
-        System.out.println(testqueue);
-        testqueue.enqueue("Second");
-        System.out.println(testqueue);
-        testqueue.enqueue("Third");
-        System.out.println(testqueue);
-
-        testqueue.dequeue();
-        System.out.println(testqueue);
-        testqueue.dequeue();
-        System.out.println(testqueue);
-        testqueue.dequeue();
-        System.out.println(testqueue);
-
-
-        testqueue.dequeue();                                //Two extra to check incase trying to dequeue an empty list
-        System.out.println(testqueue);
-        testqueue.dequeue();
-        System.out.println(testqueue);
-
-        testqueue.enqueue("Working still");                 //Testing if program still can queue and no pointer error show up
-        System.out.println(testqueue);
-        testqueue.enqueue("Keeping it going!");
-        System.out.println(testqueue);
-        System.out.println("\n Test Finished");
-
-        
+    /**
+     * Adds the item to this queue.
+     *
+     * @param  item the item to add
+     */
+    public void enqueue(Item item) {
+        Node<Item> oldlast = last;
+        last = new Node<Item>();
+        last.item = item;
+        last.next = null;
+        if (isEmpty()) first = last;
+        else           oldlast.next = last;
+        n++;
     }
-    
-    public String toString() 
-    {
-        int pointer = 1;
+
+    /**
+     * Removes and returns the item on this queue that was least recently added.
+     *
+     * @return the item on this queue that was least recently added
+     * @throws NoSuchElementException if this queue is empty
+     */
+    public Item dequeue() {
+        if (isEmpty()) throw new NoSuchElementException("Queue underflow");
+        Item item = first.item;
+        first = first.next;
+        n--;
+        if (isEmpty()) last = null;   // to avoid loitering
+        return item;
+    }
+
+    /**
+     * Returns a string representation of this queue.
+     *
+     * @return the sequence of items in FIFO order, separated by spaces
+     */
+    public String toString() {
         StringBuilder s = new StringBuilder();
-        for (Data data : this)
-        {
-            if(pointer == counter)                    //If data to be printed is at the end then print without ","
-            {
-                s.append("[" + data + "]\n");
-            }
-            else                                        //Else print with ","
-            {
-                s.append("[" + data + "], ");
-            }
-            pointer++;
+        for (Item item : this) {
+            s.append(item);
+            s.append(' ');
         }
-        
         return s.toString();
+    } 
+
+    /**
+     * Returns an iterator that iterates over the items in this queue in FIFO order.
+     *
+     * @return an iterator that iterates over the items in this queue in FIFO order
+     */
+    public Iterator<Item> iterator()  {
+        return new LinkedIterator(first);  
     }
 
-    public Iterator<Data> iterator()                        // Set up Iterator and use iterateQueue class
-    {
-        return new iterateQueue();
-    }
+    // an iterator, doesn't implement remove() since it's optional
+    private class LinkedIterator implements Iterator<Item> {
+        private Node<Item> current;
 
-    private class iterateQueue implements Iterator<Data>    // Define interateQueue class that implements Iterator
-    {
-        private Node<Data> current = top;                   // Create local variable "current" and point to first of queue
-
-        public boolean hasNext()                            // If queue has a next data value, return true else false
-        {
-            return current.next != null;
+        public LinkedIterator(Node<Item> first) {
+            current = first;
         }
 
-        public Data next() 
-        {
-            if (!hasNext()) 
-            {
-                throw new NoSuchElementException();
-            } 
-            else 
-            {
-                Data data = current.data;
-                current = current.next;
-                return data;
-            }
+        public boolean hasNext()  { return current != null;                     }
+        public void remove()      { throw new UnsupportedOperationException();  }
+
+        public Item next() {
+            if (!hasNext()) throw new NoSuchElementException();
+            Item item = current.item;
+            current = current.next; 
+            return item;
         }
     }
-
-    public static void main(String[] args) 
-    {
-        boolean on = true;
-        Scanner in = new Scanner(System.in);
-        Scanner data = new Scanner(System.in);
-
-        Queue<String> queue = new Queue<String>();
-
-        while (on == true) {
-            System.out.println("\n-----------------------------------------------");
-            System.out.println("What would you like to do?");
-            System.out.println("1: Enqueue (Add to queue)");
-            System.out.println("2: Dequeue (Load from queue)");
-            System.out.println("3: Print contents of queue");
-            System.out.println("4: Run Test");
-            System.out.println("5: Exit");
-            System.out.println("-----------------------------------------------");
-
-            int command = in.nextInt();
-
-            switch (command) 
-            {
-                case 1: 
-                {
-                    System.out.println("What would you like to add?");
-                    queue.enqueue(data.next());
-                    System.out.println(queue);
-                    break;
-                }
-
-                case 2: 
-                {
-                    queue.dequeue();
-                    System.out.println(queue);
-                    break;
-                }
-
-                case 3: 
-                {
-                    System.out.println(queue);
-                    break;
-                }
-
-                case 4: 
-                {
-                    Queue.test();
-                    break;
-                }
-
-                case 5:
-                {
-                    on = false;
-                    System.exit(0);
-                }
-                default: 
-                {
-                    System.out.println("Choose one of the options!");
-                }
-
-            }
-        }
-        
-        in.close();
-        data.close();
-    }
-
 }

@@ -16,8 +16,8 @@ public class FrequencyCounter
     public static void main(String[] args) throws FileNotFoundException
     {
     
-    int distinct = 0, words = 0;
-    int maxWords = 100;
+    int words = 0;
+    int maxWords = 600;
     int minlength = 1;
     long starttime, endtime, time;    
 
@@ -30,9 +30,9 @@ public class FrequencyCounter
     //Scanner ScanBinarySearchST = new Scanner(myText);
     
     starttime = System.nanoTime();
-    while(ScanBST.hasNext() && words < maxWords)
+    while((ScanBST.hasNext()) && (words < maxWords))
     {
-        String key = ScanBST.next();
+        String key = (ScanBST.next()).toLowerCase();
 
         if(key.length() < minlength)
         {
@@ -47,22 +47,24 @@ public class FrequencyCounter
         else
         {
             BST.put(key,1);
-            distinct++;
         }
     }
 
-    int max = 0;
-    String maxstring = "";
-    for(int i = 0; i < words; i++)
+    String max = "";
+    BST.put(max,0);
+    for(String word: BST.keys())
     {
-        if(max < BST.get()
+        if(BST.get(word) > BST.get(max))
+        {
+            max = word;
+        }
     }
 
     endtime = System.nanoTime();
     time = (endtime - starttime) / 1000000;
 
     System.out.println("BST operation took: " + time + " milliseconds to execute");
-
+    System.out.println("The most frequent word was \"" + max + "\" that occured " + BST.get(max) + " times");
     ScanBST.close();
 }
 

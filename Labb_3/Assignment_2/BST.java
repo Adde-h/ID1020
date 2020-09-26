@@ -192,33 +192,6 @@ public class BST<Key extends Comparable <Key>, Value>
         }
     }
 
-    private void keys (Node x, Queue<Key> queue, Key lo, Key hi)
-    {
-        if(x == null)
-        {
-            return;
-        }
-
-        int cmplo = lo.compareTo(x.key);
-
-        int cmphi = hi.compareTo(x.key);
-
-        if(cmplo < 0)
-        {
-            keys(x.left, queue, lo, hi);
-        }
-
-        if(cmplo <= 0 && cmphi >= 0)
-        {
-            queue.enqueue(x.key);
-        }
-
-        if(cmphi > 0)
-        {
-            keys(x.right, queue, lo, hi);
-        }
-    }
-
     public Key min()
     {
         if(isEmpty())
@@ -265,7 +238,7 @@ public class BST<Key extends Comparable <Key>, Value>
     {
         if(isEmpty())
         {
-            return new Queue<key>
+            return new Queue<Key>();
         }
         return keys(min(), max());
     }
@@ -275,6 +248,42 @@ public class BST<Key extends Comparable <Key>, Value>
         if(lo == null)
         {
             throw new IllegalArgumentException("first argument to keys() is null");
+        }
+        if(hi == null)
+        {
+            throw new IllegalArgumentException("second argument to keys() is null");
+        }
+
+        Queue<Key> queue = new Queue<Key>();
+
+        keys(root, queue, lo, hi);
+        return queue;
+    }
+
+    private void keys (Node x, Queue<Key> queue, Key lo, Key hi)
+    {
+        if(x == null)
+        {
+            return;
+        }
+
+        int cmplo = lo.compareTo(x.key);
+
+        int cmphi = hi.compareTo(x.key);
+
+        if(cmplo < 0)
+        {
+            keys(x.left, queue, lo, hi);
+        }
+
+        if(cmplo <= 0 && cmphi >= 0)
+        {
+            queue.enqueue(x.key);
+        }
+
+        if(cmphi > 0)
+        {
+            keys(x.right, queue, lo, hi);
         }
     }
 
