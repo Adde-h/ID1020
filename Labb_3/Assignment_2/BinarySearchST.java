@@ -1,3 +1,12 @@
+/*
+Adeel Hussain
+Generated: 2020-09-24, Updated: 2020-09-26
+A method that is using Binary Search in a Symbol Table to store Keys and Values
+
+Input: Strings and Integers (Keys & Values)
+Reference: https://algs4.cs.princeton.edu/31elementary/BinarySearchST.java.html
+*/
+
 public class BinarySearchST<Key extends Comparable<Key>, Value> 
 {
     private static final int INIT_CPACITY = 2;
