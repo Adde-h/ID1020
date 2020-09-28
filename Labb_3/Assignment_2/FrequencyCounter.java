@@ -15,15 +15,16 @@ public class FrequencyCounter
     public static void main(String[] args) throws FileNotFoundException
     {
         int words = 0;
-        int maxWords = 125000;
+        int maxWords = 100000;
         int minlength = 1;
+        int distinct = 0;
         long starttime, endtime, time;    
 
         BST<String, Integer> BST = new BST<String,Integer>();
         BinarySearchST<String, Integer> binarySearchST = new BinarySearchST<String, Integer>();
 
         //Read in the txt file
-        File myText = new File("Assignment_2//filteredText.txt");
+        File myText = new File("filteredText.txt");
         Scanner ScanBST = new Scanner(myText);
         Scanner ScanBinarySearchST = new Scanner(myText);
         
@@ -47,6 +48,7 @@ public class FrequencyCounter
             else
             {
                 BST.put(key,1);
+                distinct++;
             }
         }
 
@@ -63,11 +65,13 @@ public class FrequencyCounter
         endtime = System.nanoTime();
         time = (endtime - starttime) / 1000000;
         System.out.println("----------------------------------------------------");
+        System.out.println("Distinct words: " + distinct);
         System.out.println("BST operation took: " + time + " milliseconds to execute");
         System.out.println("The most frequent word was \"" + max + "\" that occured " + BST.get(max) + " times");
         
         /*BinarySearchST Execution */
         words = 0;
+        distinct = 0;
         starttime = System.nanoTime();
         while((ScanBinarySearchST.hasNext()) && (words < maxWords))
         {
@@ -86,6 +90,7 @@ public class FrequencyCounter
             else
             {
                 binarySearchST.put(key,1);
+                distinct++;
             }
         }
 
@@ -103,8 +108,10 @@ public class FrequencyCounter
         time = (endtime - starttime) / 1000000;
 
         System.out.println("----------------------------------------------------");
+        System.out.println("Distinct words: " + distinct);
         System.out.println("BinarySearchST operation took: " + time + " milliseconds to execute");
         System.out.println("The most frequent word was \"" + max2 + "\" that occured " + binarySearchST.get(max2) + " times");
+
         
         
         ScanBST.close();

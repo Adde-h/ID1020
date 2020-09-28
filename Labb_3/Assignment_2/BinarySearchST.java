@@ -11,7 +11,7 @@ Reference: https://algs4.cs.princeton.edu/31elementary/BinarySearchST.java.html
 
 public class BinarySearchST<Key extends Comparable<Key>, Value> 
 {
-    private static final int INIT_CPACITY = 2;
+    private static final int INIT_CPACITY = 4;
     private Key[] keys;
     private Value[] vals;
     private int n = 0;          // n = ammount of keys in ST

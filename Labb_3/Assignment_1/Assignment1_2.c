@@ -19,7 +19,7 @@ void checkAlphabet(FILE *ifp)
 {
     FILE *ofp;
     char c;
-    ofp = fopen("FilteredText.txt", "w");
+    ofp = fopen("filteredText.txt", "w");
     
     if (ofp == NULL) 
     {
@@ -47,11 +47,11 @@ int main(int argc, char const *argv[])
 {
     FILE *ifp;
 
-    ifp = fopen("98-0.txt", "r");
+    ifp = fopen("Gutenberg.txt", "r");
 
     if (ifp == NULL) 
     {
-        fprintf(stderr, "Can't open input file in.txt!\n");
+        fprintf(stderr, "Can't open input file!\n");
         exit(1);
     }
 
