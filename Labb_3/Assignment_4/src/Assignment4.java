@@ -16,7 +16,7 @@ import java.util.Scanner;
 
 public class Assignment4 {
 
-    static int characters = 0;
+    static int characters = 0;                                  //Counts characters
 
     public static String StringCreator(Scanner in)
     {
@@ -24,19 +24,19 @@ public class Assignment4 {
 
         while(true)
         {
-            String onechar = in.next().toLowerCase();
-            if(onechar.equals(" "))
+            String onechar = in.next().toLowerCase();           //read one char at a time, convert to lowercase
+            if(onechar.equals(" "))                             //If space is found
             {
-                characters++;                  //Counts characters from start
-                break;
+                characters++;                                   //Increment characters, start at 0 (beginning)
+                break;                                          //End of word! Break out of loop
             }
             else
             {
-                sb.append(onechar);
+                sb.append(onechar);                             //Append one char at a time until space, word is now created
             }
         }
 
-        return sb.toString();
+        return sb.toString();                                   //Return stringbuilder
 
     }
 
@@ -46,18 +46,18 @@ public class Assignment4 {
 
         Scanner scanBSST = new Scanner(inputFile);
 
-        while(scanBSST.hasNext())                       //Inserts words to the lists
+        while(scanBSST.hasNext())                       //Inserts words to the lists aslong as there are words
         {
-            scanBSST.useDelimiter("");
+            scanBSST.useDelimiter("");                  //Makes sure scanner reads in 1 char at a time
            
-            String word = StringCreator(scanBSST);
+            String word = StringCreator(scanBSST);      //Gets words
 
-            if(!BSST.contains(word))                    //If the word does not exist in the Symbol Table, create a new ArrayList
+            if(!BSST.contains(word))                    //If the word does not exist in the Symbol Table, 
             {
-                BSST.put(word, new ArrayList<Integer>());
+                BSST.put(word, new ArrayList<Integer>());   //Put word and create an new ArrayList
             }
 
-            BSST.get(word).add(characters);             //Add character count for the word
+            BSST.get(word).add(characters);             //Gets the ArrayList and adds character count for the word
             characters = characters + word.length();    //Increase the character count with the word length
         }
        

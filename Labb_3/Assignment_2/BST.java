@@ -144,13 +144,13 @@ public class BST<Key extends Comparable <Key>, Value>
             return 0;
         }
 
-        int cmp = key.compareTo(x.key);
+        int cmp = key.compareTo(x.key);          //Binary Search Algorithm
 
-        if(cmp < 0)
+        if(cmp < 0)                             //If key being search is less than node, search in left node
         {
             return rank(key,x.left);
         }
-        else if(cmp > 0)
+        else if(cmp > 0)                        //If key being search is greater than node, search in right node
         {
             return 1 + size(x.left) + rank(key, x.right);
         }
@@ -160,7 +160,7 @@ public class BST<Key extends Comparable <Key>, Value>
         }
     }
 
-    public Key min()
+    public Key min()            
     {
         if(isEmpty())
         {
@@ -169,7 +169,7 @@ public class BST<Key extends Comparable <Key>, Value>
         return min(root).key;
     }
 
-    private Node min(Node x)
+    private Node min(Node x)    //Return most left key
     {
         if(x.left == null)
         {
@@ -181,7 +181,7 @@ public class BST<Key extends Comparable <Key>, Value>
         }
     }
 
-    public Key max()
+    public Key max()    
     {
         if(isEmpty())
         {
@@ -190,7 +190,7 @@ public class BST<Key extends Comparable <Key>, Value>
         return max(root).key;
     }
 
-    private Node max(Node x)
+    private Node max(Node x)            //Return most right key
     {
         if(x.right == null)
         {
@@ -208,7 +208,7 @@ public class BST<Key extends Comparable <Key>, Value>
         {
             return new Queue<Key>();
         }
-        return keys(min(), max());
+        return keys(min(), max());      //Search from left to right
     }
 
     public Iterable<Key> keys(Key lo, Key hi)
@@ -235,21 +235,21 @@ public class BST<Key extends Comparable <Key>, Value>
             return;
         }
 
-        int cmplo = lo.compareTo(x.key);
+        int cmplo = lo.compareTo(x.key);    //Start comparing from low
 
-        int cmphi = hi.compareTo(x.key);
+        int cmphi = hi.compareTo(x.key);    //Start comparing from high
 
-        if(cmplo < 0)
+        if(cmplo < 0)                       //Keep going left until no left left
         {
             keys(x.left, queue, lo, hi);
         }
 
-        if(cmplo <= 0 && cmphi >= 0)
+        if(cmplo <= 0 && cmphi >= 0)        //When both left and right finished, queue from each recursive call
         {
             queue.enqueue(x.key);
         }
 
-        if(cmphi > 0)
+        if(cmphi > 0)                       //Go right from previous root node
         {
             keys(x.right, queue, lo, hi);
         }

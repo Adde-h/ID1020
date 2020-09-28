@@ -35,30 +35,30 @@ public class FrequencyCounter
         {
             String key = (ScanBST.next()).toLowerCase();
 
-            if(key.length() < minlength)
+            if(key.length() < minlength)                //If key length is less than minlength, Skip
             {
                 continue;
             }
             words++;
 
-            if(BST.contains(key))
+            if(BST.contains(key))                       //If the key already exists
             {
-                BST.put(key, BST.get(key) + 1);
+                BST.put(key, BST.get(key) + 1);         //Insert same key, and increment its value by 1
             }
             else
             {
-                BST.put(key,1);
+                BST.put(key,1);                         //If key does not exist, insert key and startvalue 1
                 distinct++;
             }
         }
 
         String max = "";
         BST.put(max,0);
-        for(String word: BST.keys())
+        for(String word: BST.keys())                    //For each key, get word
         {
-            if(BST.get(word) > BST.get(max))
+            if(BST.get(word) > BST.get(max))            //If value for word is greater than max
             {
-                max = word;
+                max = word;                             //Replace max
             }
         }
 
@@ -77,30 +77,30 @@ public class FrequencyCounter
         {
             String key = (ScanBinarySearchST.next()).toLowerCase();
 
-            if(key.length() < minlength)
+            if(key.length() < minlength)                              //If key length is less than minlength, Skip
             {
                 continue;
             }
             words++;
 
-            if(binarySearchST.contains(key))
+            if(binarySearchST.contains(key))                          //If the key already exists
             {
-                binarySearchST.put(key, binarySearchST.get(key) + 1);
+                binarySearchST.put(key, binarySearchST.get(key) + 1); //Insert same key, and increment its value by 1
             }
             else
             {
-                binarySearchST.put(key,1);
+                binarySearchST.put(key,1);                              //If key does not exist, insert key and startvalue 1
                 distinct++;
             }
         }
 
         String max2 = "";
         binarySearchST.put(max2,0);
-        for(String word2: binarySearchST.keys())
+        for(String word2: binarySearchST.keys())                        //For each key, get word
         {
-            if(binarySearchST.get(word2) > binarySearchST.get(max2))
+            if(binarySearchST.get(word2) > binarySearchST.get(max2))    //If value for word is greater than max
             {
-                max2 = word2;
+                max2 = word2;                                           //Replace max
             }
         }
 

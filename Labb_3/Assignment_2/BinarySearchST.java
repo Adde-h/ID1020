@@ -29,7 +29,7 @@ public class BinarySearchST<Key extends Comparable<Key>, Value>
 
     private void resize(int capacity)
     {
-        assert capacity >= n;
+        assert capacity >= n;                               
         Key[] tempk = (Key[]) new Comparable[capacity];     //Creates a new temporary array for keys with new capacity
         Value[] tempv = (Value[]) new Object[capacity];     //Creates a new temporary array for values with new capacity
         for(int i = 0; i < n; i++)                          //Copies over the existing keys & values
@@ -85,7 +85,7 @@ public class BinarySearchST<Key extends Comparable<Key>, Value>
         }
     }
 
-    public int rank(Key key) //Returns the number of keys in the ST strictly less than chosen Key ??
+    public int rank(Key key)                    //Returns the index value of key that is searched
     {
         if(key == null)
         {
@@ -111,7 +111,7 @@ public class BinarySearchST<Key extends Comparable<Key>, Value>
                 return mid;                     //Return position of key
             }
         }
-        return lo;                              //If search failed return lo position ??
+        return lo;                              //If search failed return lo position
     }
 
     public void put(Key key, Value val)         //Inserting Key and Value to the ST
@@ -194,21 +194,5 @@ public class BinarySearchST<Key extends Comparable<Key>, Value>
             queue.enqueue(keys[rank(hi)]);
         }
         return queue; 
-    }
-
-
-    public static void main(String[] args) 
-    {
-        BinarySearchST<String, Integer> st = new BinarySearchST<String, Integer>();
-        String key = "test";
-        String key2 = "Rakin";
-        String key3 = "Mehir";
-        st.put(key, 6);
-        st.put(key2, 69);
-        st.put(key3, 1);
-
-        System.out.println(st.get("test"));
-        System.out.println(st.get(key2));
-        System.out.println(st.get(key3));
     }
 }
