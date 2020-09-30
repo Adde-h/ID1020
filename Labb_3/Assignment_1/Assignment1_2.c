@@ -19,7 +19,7 @@ void checkAlphabet(FILE *ifp)
 {
     FILE *ofp;
     char c;
-    ofp = fopen("filteredText.txt", "w");
+    ofp = fopen("filteredTextNew.txt", "w");
     
     if (ofp == NULL) 
     {
