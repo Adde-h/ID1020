@@ -5,7 +5,7 @@ import java.util.NoSuchElementException;
 Adeel Hussain
 Generated: 2020-09-03, Updated: 2020-09-04
 Creates a queue that is FIFO (Does not contain dequeue function!)
-Input: String
+Input: Any Data
 Reference: https://algs4.cs.princeton.edu/13stacks/DoublyLinkedList.java.html
 */
 
@@ -28,7 +28,7 @@ public class MyQueue<Data> implements Iterable<Data> {    //Queue, Generic datat
         counter = 0;
     }
 
-    public boolean isEmpty()                    //If counter equals 0 then return true, else false
+    public boolean isEmpty()        //If counter equals 0 then return true, else false
     {  
         return counter == 0;
     }

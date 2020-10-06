@@ -3,7 +3,7 @@ import java.util.NoSuchElementException;
 /*
 Adeel Hussain
 Generated: 2020-09-25, Updated: 2020-09-26
-A method that is using Binary Search Tree to store keys and values
+A method that is used to store keys and values
 
 Input: Strings and Integers (Keys & Values)
 Reference: https://algs4.cs.princeton.edu/32bst/BST.java.html
@@ -126,38 +126,6 @@ public class BST<Key extends Comparable <Key>, Value>
         x.size = 1 + size(x.left) + size(x.right);  //Update chosen node size with containing left and right subarrays (What happens to parent node when child is added??)
 
         return x;
-    }
-
-    public int rank(Key key)
-    {
-        if(key == null)
-        {
-            throw new IllegalArgumentException("argument to rank() is null");
-        }
-        return rank(key,root);
-    }
-
-    private int rank(Key key, Node x)
-    {
-        if(x == null)
-        {
-            return 0;
-        }
-
-        int cmp = key.compareTo(x.key);          //Binary Search Algorithm
-
-        if(cmp < 0)                             //If key being search is less than node, search in left node
-        {
-            return rank(key,x.left);
-        }
-        else if(cmp > 0)                        //If key being search is greater than node, search in right node
-        {
-            return 1 + size(x.left) + rank(key, x.right);
-        }
-        else
-        {
-            return size(x.left);
-        }
     }
 
     public Key min()            

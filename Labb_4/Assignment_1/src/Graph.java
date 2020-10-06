@@ -1,107 +1,40 @@
-import java.util.NoSuchElementException;
-import java.util.Scanner;
-
 public class Graph 
 {
+    private final int V;            // Number of Vertices (Hörn)
+    private int E;                  // Number of Edges  (Kanter)
+    private Bag<Integer>[] adj;     //A bag to contain
 
-    private final int V;    // Antalet Hörn
-    private int E;          // Antalet Kanter
-    private Bag<Integer>[] adj;
 
-
-    /**
-     * Initializes an empty graph with {@code V} vertices and 0 edges.
-     * param V the number of vertices
-     *
-     * @param  V number of vertices
-     * @throws IllegalArgumentException if {@code V < 0}
-     */
+    //Initializes an empty graph with V amount of Vertices
     public Graph(int V) {
         if (V < 0) throw new IllegalArgumentException("Number of vertices must be nonnegative");
-        this.V = V;
+        this.V = V;                         //Sets the vertices amount to inserted amount
         this.E = 0;
-        adj = (Bag<Integer>[]) new Bag[V];
-        for (int v = 0; v < V; v++) 
+        adj = (Bag<Integer>[]) new Bag[V];  //Creates a bag to contain adjecent nodes called adj
+        for (int v = 0; v < V; v++)         //For loop that iterates through all the vertices and 
         {
-            adj[v] = new Bag<Integer>();
-        }
-    }
-    
-    /**
-     * Initializes a graph from the specified input stream. The format is the number
-     * of vertices <em>V</em>, followed by the number of edges <em>E</em>, followed
-     * by <em>E</em> pairs of vertices, with each entry separated by whitespace.
-     *
-     * @param in the input stream
-     * @throws IllegalArgumentException if {@code in} is {@code null}
-     * @throws IllegalArgumentException if the endpoints of any edge are not in
-     *                                  prescribed range
-     * @throws IllegalArgumentException if the number of vertices or edges is
-     *                                  negative
-     * @throws IllegalArgumentException if the input stream is in the wrong format
-     */
-    public Graph(Scanner in) {
-        if (in == null)
-            throw new IllegalArgumentException("argument is null");
-        try {
-            this.V = in.nextInt();
-            if (V < 0)
-                throw new IllegalArgumentException("number of vertices in a Graph must be nonnegative");
-            adj = (Bag<Integer>[]) new Bag[V];
-            for (int v = 0; v < V; v++) {
-                adj[v] = new Bag<Integer>();
-            }
-            int E = in.nextInt();
-            if (E < 0)
-                throw new IllegalArgumentException("number of edges in a Graph must be nonnegative");
-            for (int i = 0; i < E; i++) {
-                int v = in.nextInt();
-                int w = in.nextInt();
-                addEdge(v, w);
-            }
-        } catch (NoSuchElementException e) {
-            throw new IllegalArgumentException("invalid input format in Graph constructor", e);
+            adj[v] = new Bag<Integer>();    //Creates a bag array for each vertex
         }
     }
 
-    /**
-     * Returns the number of vertices in this graph.
-     *
-     * @return the number of vertices in this graph
-     */
+    //Returns the number of Vertices in the graph
     public int V() {
         return V;
     }
 
-    /**
-     * Returns the number of edges in this graph.
-     *
-     * @return the number of edges in this graph
-     */
+    //Returns the number of Edges in the graph
     public int E() {
         return E;
     }
-    /**
-     * Adds the undirected edge v-w to this graph.
-     *
-     * @param v one vertex in the edge
-     * @param w the other vertex in the edge
-     * @throws IllegalArgumentException unless both {@code 0 <= v < V} and
-     *                                  {@code 0 <= w < V}
-     */
+
+    //Adds the vertex edges to the adj bag array
     public void addEdge(int v, int w) {
-        E++;
-        adj[v].add(w);
-        adj[w].add(v);
+        E++;            //Increments amount of edges
+        adj[v].add(w);  //Adds node W to adjecent bag of V
+        adj[w].add(v);  //Adds node V to adjecent bag of W
     }
 
-    /**
-     * Returns the vertices adjacent to vertex {@code v}.
-     *
-     * @param v the vertex
-     * @return the vertices adjacent to vertex {@code v}, as an iterable
-     * @throws IllegalArgumentException unless {@code 0 <= v < V}
-     */
+    //Returns the adjecent bag to the chosen vertex
     public Iterable<Integer> adj(int v) 
     {
         return adj[v];
