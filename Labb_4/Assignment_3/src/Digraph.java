@@ -1,12 +1,12 @@
-public class Graph 
+public class Digraph 
 {
     private final int V;            // Number of Vertices (Hörn)
     private int E;                  // Number of Edges  (Kanter)
-    private Bag<Integer>[] adj;     //A bag to contain
+    private Bag<Integer>[] adj;     // A bag to contain
 
 
-    //Initializes an empty graph with V amount of Vertices
-    public Graph(int V) 
+    //Initializes an empty Digraph with V amount of Vertices
+    public Digraph(int V) 
     {
         if (V < 0) throw new IllegalArgumentException("Number of vertices must be nonnegative");
         this.V = V;                         //Sets the vertices amount to inserted amount
@@ -18,21 +18,21 @@ public class Graph
         }
     }
 
-    //Returns the number of Vertices in the graph
+    //Returns the number of Vertices in the Digraph
     public int V() {
         return V;
     }
 
-    //Returns the number of Edges in the graph
+    //Returns the number of Edges in the Digraph
     public int E() {
         return E;
     }
 
     //Adds the vertex edges to the adj bag array
-    public void addEdge(int v, int w) {
-        E++;            //Increments amount of edges
+    public void addEdge(int v, int w) 
+    {
         adj[v].add(w);  //Adds node W to adjecent bag of V
-        adj[w].add(v);  //Adds node V to adjecent bag of W
+        E++;            //Increments amount of edges
     }
 
     //Returns the adjecent bag to the chosen vertex

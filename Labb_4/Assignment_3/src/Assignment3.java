@@ -1,12 +1,12 @@
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class Assignment1 
+public class Assignment3 
 {
     public static void main(String[] args) throws FileNotFoundException 
     {
-        //Construct a symbolgraph using inserted filename
-        SymbolGraph sg = new SymbolGraph("Assignment_1/TheDatabase.txt");
+        //Construct a symbolDigraph using inserted filename
+        SymbolDigraph sg = new SymbolDigraph("Assignment_1/TheDatabase.txt");
         Scanner in = new Scanner(System.in);
         
         System.out.println("Enter State to start from: ");
@@ -19,10 +19,10 @@ public class Assignment1
         int endIndex = sg.indexOf(endState);
 
         //Construct the graph
-        Graph graph = sg.graph();
+        Digraph digraph = sg.digraph();
         
         //Start the DFS search and map all vertices and edges
-        DepthFirstSearch dfs = new DepthFirstSearch(graph, startIndex);
+        DepthFirstDirectedSearch dfs = new DepthFirstDirectedSearch(digraph, startIndex);
         
         if(!dfs.hasPathTo(startIndex))
         {

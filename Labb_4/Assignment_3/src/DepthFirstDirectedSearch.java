@@ -1,25 +1,25 @@
-public class DepthFirstSearch
+public class DepthFirstDirectedSearch
 {
     private boolean[] marked;           // Creates a boolean marked array to indicate if DFS has been used on the chosen vertex
     private int[] edgeTo;               // Last vertex on known path to this vertex
     private final int s;                // Start vertex
     
-    public DepthFirstSearch(Graph G, int s)
+    public DepthFirstDirectedSearch(Digraph G, int s)
     {
         marked = new boolean[G.V()];    //Creates a boolean array with size of amount of vertices to store visited vertices
         edgeTo = new int[G.V()];        //Creates an edgeTo int Array to store edge to vertices
         this.s = s;                     //Sets the start vertex
-        dfs(G, s);                      //Runs the DFS method to look for
+        dfds(G, s);                     //Runs the DFDS method to look for
     }
         //Iterates through all vertexes and fills the edgeTo array
-        private void dfs(Graph G, int v)
+        private void dfds(Digraph G, int v)
         {
             marked[v] = true;           //Sets the start vertex to true
             for (int w : G.adj(v))      //Gets all the adjecent verteces to V
             if (!marked[w])             //If it is not marked as visited
             {
                 edgeTo[w] = v;          //Set the vertex V as an EdgeTo vertex W
-                dfs(G, w);              //Continue searching in vertex W, recursive method
+                dfds(G, w);             //Continue searching in vertex W, recursive method
             }
         }
         

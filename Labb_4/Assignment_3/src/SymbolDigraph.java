@@ -2,14 +2,14 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.Scanner;
 
-public class SymbolGraph 
+public class SymbolDigraph 
 {
     private BST<String, Integer> st;    //Creates a Symbol Table that is used to save strings as integers
     private String[] keys;              //A string array is created to "translate" the integer values stored in the symboltable 
-    private Graph graph;                //Cointains the graph
+    private Digraph Digraph;            //Cointains the Digraph
 
-    //Initializes a graph from a file
-    public SymbolGraph(String filename) throws FileNotFoundException 
+    //Initializes a Digraph from a file
+    public SymbolDigraph(String filename) throws FileNotFoundException 
     {
         st = new BST<String, Integer>();            //Creates a symbol table with the type BST
 
@@ -37,10 +37,10 @@ public class SymbolGraph
             keys[st.get(name)] = name;              //Puts the name loaded from ST in the String array position of its value 
         }                                           //(i.e Key: "ABC" Value: 2 --> keys[2] = "ABC")
 
-        graph = new Graph(st.size());               //Builds a graph with size of ST
+        Digraph = new Digraph(st.size());           //Builds a Digraph with size of ST
         in = new Scanner(new FileReader(filename)); 
 
-        //Builds the graph by connecting first vertex of each line
+        //Builds the Digraph by connecting first vertex of each line
         while (in.hasNextLine()) 
         {
             String[] a = in.nextLine().split(" ");  //Read in the string line by line and split the string at each space
@@ -48,7 +48,7 @@ public class SymbolGraph
             for (int i = 1; i < a.length; i++)      //Iterates through string array "a"
             {
                 int w = st.get(a[i]);               //Retrieve index value / integer value of String from ST
-                graph.addEdge(v, w);                //Call addEdge function and connect vertices v and w
+                Digraph.addEdge(v, w);              //Call addEdge function and connect vertices v and w
             }
         }
     }
@@ -70,18 +70,18 @@ public class SymbolGraph
         return keys[v];
     }
 
-    //Returns the graph assoicated with the symbol graph
-    public Graph graph() 
+    //Returns the Digraph assoicated with the symbol Digraph
+    public Digraph digraph() 
     {
-        return graph;
+        return Digraph;
     }
 
     //Main to test the functions
     public static void main(String[] args) throws FileNotFoundException 
     {
         String filename  = "Assignment_1/routes.txt";
-        SymbolGraph sg = new SymbolGraph(filename);
-        Graph graph = sg.graph();
+        SymbolDigraph sg = new SymbolDigraph(filename);
+        Digraph Digraph = sg.digraph();
         Scanner in = new Scanner (System.in);
         while (in.hasNextLine()) 
         {
@@ -89,7 +89,7 @@ public class SymbolGraph
             if (sg.contains(source)) 
             {
                 int s = sg.indexOf(source);
-                for (int v : graph.adj(s)) 
+                for (int v : Digraph.adj(s)) 
                 {
                     System.out.println("   " + sg.nameOf(v));
                 }
