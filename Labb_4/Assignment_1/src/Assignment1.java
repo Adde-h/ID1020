@@ -1,3 +1,14 @@
+/*
+Adeel Hussain
+Generated: 2020-10-01, Updated: 2020-10-07
+A program based on DFS which can answer questions of the type: "Find the a path from X to Y" 
+Which results in a list of vertices traversed from X to Y if there is a path.
+Should return shortest path from X to Y in a Undirected Graph
+Input: txt file
+Dependencies: BreadthFirstSearch.java, Graph.java, SymbolGraph.java
+Reference: https://algs4.cs.princeton.edu/41graph/
+*/
+
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
@@ -6,7 +17,7 @@ public class Assignment1
     public static void main(String[] args) throws FileNotFoundException 
     {
         //Construct a symbolgraph using inserted filename
-        SymbolGraph sg = new SymbolGraph("Assignment_1/TheDatabase.txt");
+        SymbolGraph sg = new SymbolGraph("TheDatabase.txt");
         Scanner in = new Scanner(System.in);
         
         System.out.println("Enter State to start from: ");
@@ -24,7 +35,7 @@ public class Assignment1
         //Start the DFS search and map all vertices and edges
         DepthFirstSearch dfs = new DepthFirstSearch(graph, startIndex);
         
-        if(!dfs.hasPathTo(startIndex))
+        if(!dfs.hasPathTo(endIndex))
         {
             System.out.println("There is no path between the chosen states");
         }

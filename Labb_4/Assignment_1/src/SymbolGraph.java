@@ -1,3 +1,11 @@
+/*
+Adeel Hussain
+Generated: 2020-10-07, Updated: 2020-10-07
+Dependencies: Graph.java, MyQueue.java
+Input: Graph & Vertex Source
+Reference: https://algs4.cs.princeton.edu/41graph/SymbolGraph.java.html
+*/
+
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.Scanner;

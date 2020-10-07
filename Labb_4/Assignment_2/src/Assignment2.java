@@ -1,21 +1,23 @@
 /*
 Adeel Hussain
-Generated: 2020-10-06, Updated: 2020-10-07
-Dependencies: SymbolDigraph.java, Digraph.java, DepthFirstSearch.java
-A program that can answer if there is a path between any to vertices using a Directed Graph
-Input: Graph & Vertex Source
+Generated: 2020-10-07, Updated: 2020-10-07
+A program based on BFS which can answer questions of the type: "Find the a path from X to Y" 
+Which results in a list of vertices traversed from X to Y if there is a path.
+Should return shortest path from X to Y in a Undirected Graph
+Input: txt file
+Dependencies: BreadthFirstSearch.java, Graph.java, SymbolGraph.java
 Reference: https://algs4.cs.princeton.edu/41graph/
 */
 
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class Assignment3 
+public class Assignment2 
 {
     public static void main(String[] args) throws FileNotFoundException 
     {
-        //Construct a symbolDigraph using inserted filename
-        SymbolDigraph sg = new SymbolDigraph("TheDatabase.txt");
+        //Construct a symbolgraph using inserted filename
+        SymbolGraph sg = new SymbolGraph("TheDatabase.txt");
         Scanner in = new Scanner(System.in);
         
         System.out.println("Enter State to start from: ");
@@ -28,18 +30,18 @@ public class Assignment3
         int endIndex = sg.indexOf(endState);
 
         //Construct the graph
-        Digraph digraph = sg.digraph();
+        Graph graph = sg.graph();
         
-        //Start the DFS search and map all vertices and edges
-        DepthFirstDirectedSearch dfs = new DepthFirstDirectedSearch(digraph, startIndex);
+        //Start the BFS search and map all vertices and edges
+        BreadthFirstSearch bfs = new BreadthFirstSearch(graph, startIndex);
         
-        if(!dfs.hasPathTo(endIndex))
+        if(!bfs.hasPathTo(endIndex))
         {
             System.out.println("There is no path between the chosen states");
         }
         else
         {
-            for(int f : dfs.pathTo(endIndex)) //Retrieve stack of vertices from start vertex to end vertex
+            for(int f : bfs.pathTo(endIndex)) //Retrieve stack of vertices from start vertex to end vertex
             {
                 if(f == endIndex)
                 {
@@ -51,6 +53,7 @@ public class Assignment3
                 }
             }
         }
+
         in.close();
     }
 }

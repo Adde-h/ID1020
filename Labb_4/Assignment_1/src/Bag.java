@@ -1,3 +1,11 @@
+/*
+Adeel Hussain
+Generated: 2020-10-01, Updated: 2020-10-06
+Input: Any Items
+Reference: https://algs4.cs.princeton.edu/13stacks/Bag.java.html
+*/
+
+
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 

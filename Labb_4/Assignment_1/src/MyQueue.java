@@ -1,15 +1,17 @@
-import java.util.Iterator;
-import java.util.NoSuchElementException;
-
 /*
 Adeel Hussain
 Generated: 2020-09-03, Updated: 2020-09-04
 Creates a queue that is FIFO (Does not contain dequeue function!)
 Input: Any Data
-Reference: https://algs4.cs.princeton.edu/13stacks/DoublyLinkedList.java.html
+Reference: https://algs4.cs.princeton.edu/13stacks/DoublyLinkedList.java.html, 
+https://algs4.cs.princeton.edu/43mst/Queue.java.html
 */
 
-public class MyQueue<Data> implements Iterable<Data> {    //Queue, Generic datatype
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
+public class MyQueue<Data> implements Iterable<Data> //Queue, Generic datatype
+{    
     
     private Node<Data> top;         //Creates top of queue
     private Node<Data> bottom;      //Creates bottom of queue
@@ -35,29 +37,44 @@ public class MyQueue<Data> implements Iterable<Data> {    //Queue, Generic datat
 
     public void enqueue(Data data) 
     {
-        Node<Data> oldlast = bottom;
+        Node<Data> oldbottom = bottom;
         bottom = new Node<Data>();
         bottom.data = data;
         bottom.next = null;
+
         if (isEmpty()) 
         {
             top = bottom;
         }
         else           
         {
-            oldlast.next = bottom;
+            oldbottom.next = bottom;
         }
         counter++;
     }
+
+    public Data dequeue() 
+    {
+        Data data = top.data;
+        top = top.next;
+        counter--;
+        
+        if (isEmpty()) 
+        {
+            bottom = null;
+        }
+
+        return data;
+    }
     
-    public Iterator<Data> iterator()                  //Set up Iterator and use iterateQueue class
+    public Iterator<Data> iterator()                        //Set up Iterator and use iterateQueue class
 	{
 		return new iterateQueue();
 	}
 
     private class iterateQueue implements Iterator<Data>    //Define interateQueue class that implements Iterator
 	{
-		private Node<Data> current = top;                   //Create local variable "current" and point to first of queue
+		private Node<Data> current = top;                   //Create local variable "current" and point to top of queue
         private int index = 0;
         public boolean hasNext()                            //If queue has a next data value, return true else false
         {

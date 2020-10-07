@@ -1,13 +1,14 @@
-import java.util.NoSuchElementException;
-
 /*
 Adeel Hussain
-Generated: 2020-09-25, Updated: 2020-09-26
-A method that is used to store keys and values
-
+Generated: 2020-09-25, Updated: 2020-10-07
+A method that is used to store keys and values (Redacted to only use methods needed in DFS & BFS)
+Dependencies: MyQueue.java
 Input: Strings and Integers (Keys & Values)
 Reference: https://algs4.cs.princeton.edu/32bst/BST.java.html
 */
+
+import java.util.NoSuchElementException;
+
 public class BST<Key extends Comparable <Key>, Value>
 {
     private Node root;              //Root of Tree
